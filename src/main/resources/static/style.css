@@ -1,0 +1,21 @@
+body {
+    background: #282a36;
+    overflow: hidden;
+}
+
+input {
+    border: none;
+    background: rgba(0,0,0, 0.5);
+    color: white;
+    padding: 10px;
+    font-family: 'Roboto';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+}
+
+.output {
+    margin-bottom: 100px;
+    color: #50fa7b;
+}

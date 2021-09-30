@@ -1,6 +1,6 @@
 package com.assismoraes.kotlinkafka.config
 
-import com.assismoraes.kotlinkafka.domain.KafkaMessage
+import com.assismoraes.kotlinkafka.domain.Message
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -18,29 +18,29 @@ import org.springframework.kafka.support.serializer.JsonSerializer
 class KafkaConfiguration {
 
     @Bean
-    fun producerFactory(): ProducerFactory<String, KafkaMessage> {
+    fun producerFactory(): ProducerFactory<String, Message> {
         val config: MutableMap<String, Any> = HashMap()
         config[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "127.0.0.1:9092"
         config[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
         config[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = JsonSerializer::class.java
-        return DefaultKafkaProducerFactory<String, KafkaMessage>(config)
+        return DefaultKafkaProducerFactory<String, Message>(config)
     }
 
     @Bean
-    fun kafkaTemplate(): KafkaTemplate<String, KafkaMessage> {
-        return KafkaTemplate<String, KafkaMessage>(producerFactory())
+    fun kafkaTemplate(): KafkaTemplate<String, Message> {
+        return KafkaTemplate<String, Message>(producerFactory())
     }
 
     @Bean
-    fun kafkaListenerContainerFactory(consumerFactory: ConsumerFactory<String, KafkaMessage>): ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> {
-        val factory: ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> =
+    fun kafkaListenerContainerFactory(consumerFactory: ConsumerFactory<String, Message>): ConcurrentKafkaListenerContainerFactory<String, Message> {
+        val factory: ConcurrentKafkaListenerContainerFactory<String, Message> =
             ConcurrentKafkaListenerContainerFactory()
         factory.consumerFactory = consumerFactory
         return factory
     }
 
     @Bean
-    fun consumerFactory(): ConsumerFactory<String, KafkaMessage> {
+    fun consumerFactory(): ConsumerFactory<String, Message> {
         val props = mapOf(
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to "127.0.0.1:9092",
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,

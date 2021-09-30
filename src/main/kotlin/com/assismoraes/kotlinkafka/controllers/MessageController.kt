@@ -1,11 +1,8 @@
 package com.assismoraes.kotlinkafka.controllers
 
-import com.assismoraes.kotlinkafka.domain.KafkaMessage
+import com.assismoraes.kotlinkafka.domain.Message
 import com.assismoraes.kotlinkafka.services.MessageService
 import org.springframework.http.ResponseEntity
-import org.springframework.messaging.handler.annotation.MessageMapping
-import org.springframework.messaging.handler.annotation.Payload
-import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,8 +16,8 @@ class MessageController(
 ) {
 
     @PostMapping
-    fun send(@RequestBody kafkaMessage: KafkaMessage): ResponseEntity<Any> {
-        messageService.send(kafkaMessage)
+    fun send(@RequestBody message: Message): ResponseEntity<Any> {
+        messageService.sendToKafka(message)
         return ResponseEntity.ok("message sent");
     }
 
