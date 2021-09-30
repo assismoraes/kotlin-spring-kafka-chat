@@ -4,7 +4,7 @@ import com.assismoraes.kotlinkafka.domain.Message
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.common.serialization.Deserializer
 
-class KafkaMessageDeserializer : Deserializer<Message> {
+class MessageDeserializer : Deserializer<Message> {
 
     private val objectMapper = ObjectMapper()
 

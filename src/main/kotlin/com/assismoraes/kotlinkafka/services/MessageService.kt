@@ -3,6 +3,7 @@ package com.assismoraes.kotlinkafka.services
 import com.assismoraes.kotlinkafka.domain.Message
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
+import javax.annotation.PostConstruct
 
 @Service
 class MessageService(
@@ -10,7 +11,7 @@ class MessageService(
 ) {
 
     companion object {
-        const val KAFKA_TOPIC = "quickstart-events"
+        const val KAFKA_TOPIC = "kotlin-kafka.chat"
     }
 
     fun sendToKafka(message: Message) {

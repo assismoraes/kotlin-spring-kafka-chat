@@ -11,13 +11,9 @@ class KafkaConsumer(
     private val template: SimpMessagingTemplate
 ) {
 
-    @KafkaListener(topics = [ MessageService.KAFKA_TOPIC ], groupId = "group_json")
+    @KafkaListener(topics = [ MessageService.KAFKA_TOPIC ], groupId = "default_group")
     fun consume(message: Message) {
-        println("from: " + message.userId + " | content: " + message.message)
-
         template.convertAndSend("/topic/message", message)
-
-
     }
 
 }

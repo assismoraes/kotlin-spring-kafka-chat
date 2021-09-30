@@ -12,7 +12,7 @@ class CorsConfig: WebMvcConfigurer {
             .allowedHeaders("*")
             .allowedMethods("*")
             .allowedOriginPatterns("*")
-            .allowCredentials(false);
+            .allowCredentials(false)
     }
 
 
