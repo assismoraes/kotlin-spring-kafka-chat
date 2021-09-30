@@ -1,1 +1,1 @@
-rootProject.name = "kotlin-kafka"
+rootProject.name = "kotlin-spring-kafka-chat"
